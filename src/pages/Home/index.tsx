@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react';
+import ListInfoItem from '../../components/ListInfoItem';
 import { CITY_DEFAULT, COUNTRY_DEFAULT } from '../../utils/constants';
 
 const { REACT_APP_OPENWEATHERMAP_API_KEY } = process.env;
@@ -67,37 +68,10 @@ const HomePage: FC = () => {
                   <button>Get Weather</button>
                 </form>
                 <div className="weather__info">
-                  {city && country && (
-                    <p className="weather__key">
-                      {' '}
-                      Location:
-                      <span className="weather__value">
-                        {' '}
-                        {city}, {country}
-                      </span>
-                    </p>
-                  )}
-                  {temperature && (
-                    <p className="weather__key">
-                      {' '}
-                      Temperature:
-                      <span className="weather__value"> {temperature} </span>
-                    </p>
-                  )}
-                  {humidity && (
-                    <p className="weather__key">
-                      {' '}
-                      Humidity:
-                      <span className="weather__value"> {humidity} </span>
-                    </p>
-                  )}
-                  {description && (
-                    <p className="weather__key">
-                      {' '}
-                      Conditions:
-                      <span className="weather__value"> {description} </span>
-                    </p>
-                  )}
+                  <ListInfoItem label="Location" value={city && country ? `${city}, ${country}` : null} />
+                  <ListInfoItem label="Temperature" value={temperature} />
+                  <ListInfoItem label="Humidity" value={humidity} />
+                  <ListInfoItem label="Conditions" value={description} />
                   {error && <p className="weather__error">{error}</p>}
                 </div>
               </div>
