@@ -50,3 +50,6 @@ Here are some bonus points:
 **9-** Use React Context API for global state management (in this case only the weather).  
 **10-** Use localStorage to save the last saved search, so that when entering another tab, the data is already preloaded if a search has already been carried out.  
 **11-** Add new enviroment variable    **REACT_APP_OPENWEATHERMAP_URL_BASE** with the next value for dev: http://api.openweathermap.org/data/2.5/
+
+
+App Demo in the following Link: https://weather-sp-challenge.netlify.app/
