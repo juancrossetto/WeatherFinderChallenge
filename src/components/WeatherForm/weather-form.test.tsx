@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import WeatherForm from '.';
-import { WeatherContext } from '../../context/weather/WeatherContext';
+import { weatherContext } from '../../context/weather/weatherContext';
 import { CITY_DEFAULT, COUNTRY_DEFAULT } from '../../utils/constants';
 
 const mockSubmit = jest.fn();
@@ -16,10 +16,9 @@ const weatherMocked = {
 describe('test weather form', () => {
   beforeEach(() => {
     render(
-      <WeatherContext.Provider
+      <weatherContext.Provider
         value={{
           getWeather: mockSubmit,
-          setWeatherFromStorage: jest.fn(),
           weatherState: {
             weather: weatherMocked,
             isLoading: false,
@@ -28,7 +27,7 @@ describe('test weather form', () => {
         }}
       >
         <WeatherForm />
-      </WeatherContext.Provider>
+      </weatherContext.Provider>
     );
   });
   test('renders form weather', () => {
