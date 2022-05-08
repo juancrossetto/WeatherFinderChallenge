@@ -16,7 +16,7 @@ const HomePage: FC = () => {
         <div className="main">
           <div className="container-fluid">
             <div className="row">
-              <div className="col-5 title-container">
+              <div className="col-12 col-lg-5 title-container">
                 <div>
                   <h1 data-testid="home-title" className="title-container__title">
                     Weather Finder
@@ -24,7 +24,7 @@ const HomePage: FC = () => {
                   <h3 className="title-container__subtitle">Find out temperature, conditions and more...</h3>
                 </div>
               </div>
-              <div className="col-7 form-container">
+              <div className="col-12 col-lg-7 form-container">
                 <WeatherForm />
                 <WeatherInformation />
               </div>
