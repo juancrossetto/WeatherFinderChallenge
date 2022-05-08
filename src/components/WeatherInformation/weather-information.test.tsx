@@ -16,6 +16,7 @@ describe('test weather information', () => {
       <weatherContext.Provider
         value={{
           getWeather: jest.fn(),
+          setWeatherFromStorage: jest.fn(),
           weatherState: {
             weather: weatherMocked,
             isLoading: false,
@@ -44,6 +45,7 @@ describe('test error and isloading state', () => {
       <weatherContext.Provider
         value={{
           getWeather: jest.fn(),
+          setWeatherFromStorage: jest.fn(),
           weatherState: {
             weather: weatherMocked,
             isLoading: true,

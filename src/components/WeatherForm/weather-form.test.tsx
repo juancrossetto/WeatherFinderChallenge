@@ -19,6 +19,7 @@ describe('test weather form', () => {
       <weatherContext.Provider
         value={{
           getWeather: mockSubmit,
+          setWeatherFromStorage: jest.fn(),
           weatherState: {
             weather: weatherMocked,
             isLoading: false,
