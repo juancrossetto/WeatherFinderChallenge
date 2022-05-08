@@ -1,10 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import WeatherForm from '../../components/WeatherForm';
 import WeatherInformation from '../../components/WeatherInformation';
 import { useWeather } from '../../hooks/useWeather';
 import './styles.css';
 
 const HomePage: FC = () => {
+  const { setWeatherFromStorage } = useWeather();
+  useEffect(() => {
+    setWeatherFromStorage();
+    // eslint-disable-next-line
+  }, []);
   return (
     <div>
       <div className="wrapper">

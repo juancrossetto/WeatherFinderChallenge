@@ -1,12 +1,20 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useWeather } from '../../hooks/useWeather';
 import { CITY_DEFAULT, COUNTRY_DEFAULT } from '../../utils/constants';
+import { getLastWeather } from '../../utils/storage';
 
 export const WeatherForm = () => {
   const [cityFilter, setCityFilter] = useState(CITY_DEFAULT);
   const [countryFilter, setCountryFilter] = useState(COUNTRY_DEFAULT);
   const { getWeather } = useWeather();
-
+  useEffect(() => {
+    const weatherCache = getLastWeather();
+    if (weatherCache) {
+      const weatherCacheParsed = JSON.parse(weatherCache);
+      setCityFilter(weatherCacheParsed.city);
+      setCountryFilter(weatherCacheParsed.country);
+    }
+  }, []);
   const searchWeather = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();

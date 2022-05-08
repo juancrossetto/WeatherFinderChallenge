@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import { getWeatherFromApi } from '../../api/weatherService';
 import { WeatherState } from '../../models/WeatherState';
+import { getLastWeather, setLastWeather } from '../../utils/storage';
 import { weatherContext } from './weatherContext';
 import { weatherReducer } from './weatherReducer';
 
@@ -23,10 +24,19 @@ export const WeatherProvider = ({ children }: WeatherProviderProps) => {
         throw new Error('No information was found for the indicated city and country');
       }
       dispatch({ type: 'GET_WEATHER_SUCCESS', payload: weatherResponse });
+      // save in storage
+      setLastWeather(JSON.stringify(weatherResponse));
     } catch (error) {
       dispatch({ type: 'GET_WEATHER_ERROR', payload: error.message });
     }
   };
 
-  return <weatherContext.Provider value={{ weatherState, getWeather }}>{children}</weatherContext.Provider>;
+  const setWeatherFromStorage = () => {
+    const weatherCache = getLastWeather();
+    if (weatherCache) {
+      dispatch({ type: 'GET_WEATHER_SUCCESS', payload: JSON.parse(weatherCache) });
+    }
+  };
+
+  return <weatherContext.Provider value={{ weatherState, getWeather, setWeatherFromStorage }}>{children}</weatherContext.Provider>;
 };
