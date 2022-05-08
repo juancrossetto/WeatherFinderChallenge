@@ -5,7 +5,7 @@ const { REACT_APP_OPENWEATHERMAP_API_KEY, REACT_APP_OPENWEATHERMAP_URL_BASE } = 
 const getWeatherFromApi = async (city: string, country: string): Promise<Weather> => {
   try {
     const url = `${REACT_APP_OPENWEATHERMAP_URL_BASE}weather?q=${city},${country}&appid=${REACT_APP_OPENWEATHERMAP_API_KEY}&units=metric`;
-    const response = await fetch(url);
+    const response = await fetch(url, { mode: 'cors' });
     const data = await response.json();
     const result: Weather = {
       temperature: data?.main?.temp,
